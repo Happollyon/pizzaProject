@@ -21,7 +21,7 @@ class Plater(models.Model):
     price1=models.FloatField(default=0)
     price2=models.FloatField(default=0)
     def __str__(self):
-        return f"{self.name}  {self.price1} euros  {self.price2} euros"
+        return f"{self.name}  {self.price1} small  {self.price2} large"
 
 class Topping(models.Model):
     name= models.CharField(max_length=64, default='teste')
@@ -36,7 +36,7 @@ class Regular_pizza(models.Model):
     option=models.IntegerField(default=0)
 
     def __str__(self):
-        return  f"{self.name} {self.price1} euros {self.price2} euros"
+        return  f"{self.name} {self.price1} small {self.price2} large"
 
 class Sicillia_pizza(models.Model):
     name = models.CharField(max_length=64, default='teste')
@@ -45,7 +45,7 @@ class Sicillia_pizza(models.Model):
     option = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.name} {self.price1} euros {self.price2} euros"
+        return f"{self.name} {self.price1} small {self.price2} large"
 class Subs(models.Model):
     name = models.CharField(max_length=64, default='teste')
     price1 = models.FloatField(default=0)
@@ -53,4 +53,4 @@ class Subs(models.Model):
     option = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.name} {self.price1} euros {self.price2} euros"
+        return f"{self.name} {self.price1} small {self.price2} large"

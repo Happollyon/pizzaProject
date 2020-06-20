@@ -5,44 +5,61 @@
 
 
     <title>Pizzaria</title>
+<link rel="script" href="/static/script.js">
     <link rel="stylesheet" href="/static/style.css">
 
 </head>
 <body>
 
 <h2><a href="/logout">logout</a></h2>
+
+
  <h1  style="color:#2E2E3A">Menu</h1>
+
+
 <h3>Regular Pizza</h3>
  <div class="cont">
 {% for regular in Regular_pizza%}
-    <input type="checkbox"><label >{{regular}}</label><br>
-            <input type="radio" value="large">  <label>large</label>
-            <input type="radio" value="small">  <label>small</label>
-            <div  style="background:#2E2E3A; display:none" >
-            {%for topping in Topping%}
-                 <input type="checkbox"  value="{{topping}}"><label  style="color:#FFFFFF">{{topping}}</label>
-            {%endfor%}
+     <div>
+       <label onclick='opn()'>{{regular}}</label><br>
+                <div class="size">
+                    <input type="radio" value="large">  <label>large</label>
+                    <input type="radio" value="small">  <label>small</label>
                 </div>
-     <br>
 
 
+                <div class="topping" >
+                        {%for topping in Topping%}
+                             <input type="checkbox"  value="{{topping}}"><label  style="color:#FFFFFF">{{topping}}</label>
+                        {%endfor%}
+                </div>
+         <div class="button">add to chart</div>
+         <br>
+
+     </div>
 {%endfor%}
  </div>
 
      <h3>Sicillian Pizza</h3>
  <div class="cont">
+
 {% for Sicillian in Sicillian_pizza%}
-    <input type="checkbox"><label >{{Sicillian}}</label><br>
-             <input type="radio" value="large">  <label>large</label>
+     <div>
+         <label >{{Sicillian}}</label><br>
+            <div class="size">
+            <input type="radio" value="large">  <label>large</label>
             <input type="radio" value="small">  <label>small</label>
-            <div>
+                </div>
+            <div class="topping">
             {%for topping in Topping%}
                  <input type="checkbox" value="{{topping}}"><label>{{topping}}</label>
 
             {%endfor%}
-                </div>
-     <br>
 
+                </div>
+         <div class="button">add to chart</div>
+     <br>
+</div>
 {%endfor%}
  </div>
 
@@ -51,7 +68,9 @@
     <h3>Salad</h3>
 <div class="cont">
     {%for salad in Salad%}
-    <input type="checkbox"><label >{{salad}}</label><br>
+    <div>
+   <label >{{salad}}</label><br>
+    </div>
     {%endfor%}
 </div>
 
@@ -59,12 +78,14 @@
     <h3>Subs</h3>
 <div class="cont">
     {%for subs in Subs%}
-    <input type="checkbox"><label>{{subs}}</label><br>
-    <div class="size">
-     <input  type="radio" name ='large'value="large">  <label>large</label>
-    <input  type="radio" name="small" value="small">  <label>small</label>
-    </div>
-    <br/><br/>
+     <div>
+        <label>{{subs}}</label><br>
+        <div class="size">
+             <input  type="radio" name ='large'value="large">  <label>large</label>
+            <input  type="radio" name="small" value="small">  <label>small</label>
+        </div>
+        <br/><br/>
+          </div>
     {%endfor%}
 </div>
 
@@ -72,7 +93,9 @@
     <h3>Pasta</h3>
 <div class="cont">
     {%for pasta in Pasta%}
-    <input type="checkbox"><label style="color:Blue;font-size:22px">{{pasta}}</label><br>
+     <div>
+   <label    >{{pasta}}</label><br>
+          </div>
     {%endfor%}
 </div>
 
@@ -80,12 +103,13 @@
 <div class="cont">
 
     {%for plater in Plater%}
-
-    <input type="checkbox"><label >{{plater}}</label><br>
-    <form>
+     <div>
+   <label >{{plater}}</label><br>
+           </div>
+    <div class="size">
     <input id="large" type="radio" name ='large'value="large">  <label>large</label>
     <input id= "small"type="radio" name="small" value="small">  <label>small</label>
-        </form>
+   </div>
     <br/>
     {%endfor%}
 </div>
