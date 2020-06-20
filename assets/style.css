@@ -1,0 +1,22 @@
+body{
+background:#EAEAEA;
+}
+
+.cont{
+background: #893168;
+color:#050404;
+border-radius:9px;
+width: 80%
+}
+
+.cont>div{
+display:none;
+
+}
+
+.size
+{
+background:#4A1942;
+width: 50%;
+border-radius:9px;
+}
