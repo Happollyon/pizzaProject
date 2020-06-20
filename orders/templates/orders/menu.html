@@ -5,7 +5,7 @@
 
 
     <title>Pizzaria</title>
-<link rel="script" href="/static/script.js">
+    <script src="/static/script.js"></script>
     <link rel="stylesheet" href="/static/style.css">
 
 </head>
@@ -14,14 +14,14 @@
 <h2><a href="/logout">logout</a></h2>
 
 
- <h1  style="color:#2E2E3A">Menu</h1>
+<h1 style="color:#2E2E3A">Menu</h1>
 
 
 <h3>Regular Pizza</h3>
  <div class="cont">
 {% for regular in Regular_pizza%}
-     <div>
-       <label onclick='opn()'>{{regular}}</label><br>
+     <div onclick='show_details(event)'>
+       <label >{{regular}}</label><br>
                 <div class="size">
                     <input type="radio" value="large">  <label>large</label>
                     <input type="radio" value="small">  <label>small</label>

@@ -1,0 +1,12 @@
+function show_details(event)
+ {
+            alert('oi')
+ }
+  window.onload= function teste(){
+	
+	  alert('hi')
+	
+  }
+function (){
+	alert('hi')
+}

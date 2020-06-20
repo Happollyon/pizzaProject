@@ -1,4 +1,5 @@
-function opn()
+function show_details()
  {
             alert('oi')
  }
+  
