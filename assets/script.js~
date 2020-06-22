@@ -3,10 +3,12 @@ script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
+// the code above includes the jquery cdn to the document
 
 
 
 
+// this function displays the detais of clicked item in the menu
 function show_details(event)
  {
  
@@ -15,6 +17,7 @@ function show_details(event)
 	item.querySelector(".button").style.display="flex";	  
  }
 
+// this function gets the tokent to send back to server
 function getCookie(name) {
 	    var cookieValue = null;
 	    if (document.cookie && document.cookie !== '') {
@@ -32,32 +35,35 @@ function getCookie(name) {
 		 return cookieValue;
 		 }
 		
+
+// this function limts the amount of toppings the user can select
 function limit(event)
 {
 	let limit =3;
-	//let checkbox= event.currentTarget.style.background='blue'
-
-	//console.log($('input[type=checkbox]:checked').length) 
 	
+
 	console.log($(event.currentTarget).siblings(':checked').length)
 	if($(event.currentTarget).siblings(':checked').length >= limit) {
-		        this.checked = false;
-		alert('ok')
-	 }
+		        $(event.currentTarget).prop('checked',false)
+		
+	}
 
 }
 
-function regular_pizza(item)
+
+// this function adds item to basket
+function regular_pizza(item,event)
 {
+	//token to be sent to the server 
 	var csrftoken = getCookie('csrftoken');
-	let topping=''
-	console.log(item)	
+	let topping_cont=$(event.currentTarget).siblings('div.topping')
+	let topping = []
+	 topping_cont.children(':checked').each(function (){
+	  topping.push($(this).val())	
+	 })
+	console.log(topping)
 	let item_obj=document.getElementById(item)
-
-	
 	let size=''
-
-
 
 	var xhttp = new XMLHttpRequest();
 	  xhttp.onreadystatechange = function() 

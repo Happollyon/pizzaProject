@@ -43,20 +43,27 @@ function limit(event)
 	
 
 	console.log($(event.currentTarget).siblings(':checked').length)
-	if($(event.currentTarget).siblings(':checked').length >= limit-1) {
-		        this.checked = false;
-		alert('ok')
-	 }
+	if($(event.currentTarget).siblings(':checked').length >= limit) {
+		        $(event.currentTarget).prop('checked',false)
+		
+	}
 
 }
 
 
 // this function adds item to basket
-function regular_pizza(item)
+function regular_pizza(item,event)
 {
+	//token to be sent to the server 
 	var csrftoken = getCookie('csrftoken');
-	let topping=''	
-	let item_obj=document.getElementById(item)
+	let topping_cont=$(event.currentTarget).siblings('div.topping')
+	let topping = []
+	 
+	//selects all checked boxes and saves to an array
+	topping_cont.children(':checked').each(function (){
+	  topping.push($(this).val())	
+	 })
+
 	let size=''
 
 	var xhttp = new XMLHttpRequest();
@@ -68,9 +75,10 @@ function regular_pizza(item)
 	          }
 		    };
 	
-
+	//converts data to a json file and sends it to server
 	let data ={tp1:"chees", tp2:"bacon",tp3:"tomato"}
 	data = JSON.stringify(data)
+	
 	xhttp.open("POST", "/reg_pizza", true);
 	xhttp.setRequestHeader("Content-type", "application/json");  
 	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
