@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login as login_2, logout as logout_2
 from django.contrib.auth.models import User
 from django.urls import reverse
+import json
 
 # Create your views here.
 from .models import Pasta,Topping,Plater,Regular_pizza,Salad,Sicillia_pizza,Subs
@@ -57,3 +58,9 @@ def logout(request):
 
     logout_2(request)
     return HttpResponseRedirect(reverse("index"))
+
+def reg_pizza(request):
+    #top= request.POST.getlist('data')
+    json_data = json.loads(request.body)
+    print(json_data)
+    return HttpResponse('e')

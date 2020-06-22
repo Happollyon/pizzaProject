@@ -6,6 +6,7 @@
 
     <title>Pizzaria</title>
     <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <link rel="stylesheet" href="/static/style.css">
 
 </head>
@@ -20,20 +21,19 @@
 <h3>Regular Pizza</h3>
  <div class="cont">
 {% for regular in Regular_pizza%}
-     <div onclick='show_details(event)'>
+     <div id='{{regular.id}}' class="regular_pizza" data-item-id="{{regular.id}}"onclick='show_details(event)'>
        <label >{{regular}}</label><br>
                 <div class="size">
                     <input type="radio" value="large">  <label>large</label>
                     <input type="radio" value="small">  <label>small</label>
                 </div>
 
-
                 <div class="topping" >
                         {%for topping in Topping%}
-                             <input type="checkbox"  value="{{topping}}"><label  style="color:#FFFFFF">{{topping}}</label>
+                             <input type="checkbox"  onchange="limit(event)" name="topping"value="{{topping.id}}"><label style="color:#FFFFFF">{{topping}}</label>
                         {%endfor%}
                 </div>
-         <div class="button">add to chart</div>
+         <div class="button" onclick="regular_pizza({{regular.id}})">add to chart</div>
          <br>
 
      </div>

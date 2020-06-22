@@ -1,12 +1,99 @@
+var script = document.createElement('script');
+script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
+
+
+
+
 function show_details(event)
  {
-            alert('oi')
+ 
+	let item = event.currentTarget;
+	item.querySelector(".size").style.display='flex';		item.querySelector(".topping").style.display='flex';
+	item.querySelector(".button").style.display="flex";	  
  }
-  window.onload= function teste(){
+
+function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+		            var cookies = document.cookie.split(';');
+		            for (var i = 0; i < cookies.length; i++)
+		    	{
+				var cookie = cookies[i].trim();
 	
-	  alert('hi')
+		             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		           break;
+		        }
+		     }
+		 }
+		 return cookieValue;
+		 }
+		
+function limit(event)
+{
+	let limit =3;
+	//let checkbox= event.currentTarget.style.background='blue'
+
+	//console.log($('input[type=checkbox]:checked').length) 
 	
-  }
-function (){
-	alert('hi')
+	console.log($(event.currentTarget).siblings(':checked').length)
+	if($(event.currentTarget).siblings(':checked').length >= limit) {
+		        this.checked = false;
+		alert('ok')
+	 }
+
+}
+
+function regular_pizza(item)
+{
+	var csrftoken = getCookie('csrftoken');
+	let topping=''
+	console.log(item)	
+	let item_obj=document.getElementById(item)
+
+	
+	let size=''
+
+
+
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	       	{
+		      if (this.readyState == 4 && this.status == 200) 
+		  {
+			  alert('1')
+	          }
+		    };
+	
+
+	let data ={tp1:"chees", tp2:"bacon",tp3:"tomato"}
+	data = JSON.stringify(data)
+	xhttp.open("POST", "/reg_pizza", true);
+	xhttp.setRequestHeader("Content-type", "application/json");  
+	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
+	xhttp.send(data);
+}
+function sici_pizza()
+{
+	let topping=''
+	let item=''
+	let size=''
+}
+function pasta()
+{
+	let item=''
+}
+
+function salad()
+{
+		let item=''
+}	
+
+function platter()
+{
+	let item=''
+	let size=''
 }

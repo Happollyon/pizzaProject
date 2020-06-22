@@ -9,5 +9,7 @@ urlpatterns = [
     path("create",views.create,name='create'),
     path("register", views.register, name="register"),
     path("logout", views.logout, name="logout"),
+    path("reg_pizza", views.reg_pizza, name="reg_pizza"),
+    path("<int:topping>", views.reg_pizza)
 ]
 urlpatterns+= staticfiles_urlpatterns()
