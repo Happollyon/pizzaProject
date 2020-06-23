@@ -13,6 +13,7 @@
 <body>
 
 <h2><a href="/logout">logout</a></h2>
+<h2><a href="/logout">{{request.user.id}}</a></h2>
 
 
 <h1 style="color:#2E2E3A">Menu</h1>
@@ -21,7 +22,7 @@
 <h3>Regular Pizza</h3>
  <div class="cont">
 {% for regular in Regular_pizza%}
-     <div id='{{regular.id}}' class="regular_pizza" data-item-id="{{regular.id}}"onclick='show_details(event)'>
+     <div id='{{regular.id}}' class="regular_pizza"  onclick='show_details(event)'>
        <label >{{regular}}</label><br>
                 <div class="size">
                     <input type="radio" value="large">  <label>large</label>
@@ -30,21 +31,21 @@
 
                 <div class="topping" >
                         {%for topping in Topping%}
-                             <input  type="checkbox"  onchange="limit(event)" name="topping"value="{{topping.id}}"><label style="color:#FFFFFF">{{topping}}</label>
+                             <input  type="checkbox"  onchange="limit({{regular.option}},event)" name="topping"value="{{topping.id}}"><label style="color:#FFFFFF">{{topping}}</label>
                         {%endfor%}
                 </div>
-         <div class="button" onclick="regular_pizza({{regular.id}},event)">add to chart</div>
+         <div class="button" onclick="regular_pizza({{regular.id}},event,{{request.user.id}})">add to chart</div>
          <br>
 
      </div>
 {%endfor%}
- </div>
+ </div >
 
      <h3>Sicillian Pizza</h3>
  <div class="cont">
 
 {% for Sicillian in Sicillian_pizza%}
-     <div>
+     <div  onclick='show_details(event)'>
          <label >{{Sicillian}}</label><br>
             <div class="size">
             <input type="radio" value="large">  <label>large</label>
@@ -52,12 +53,12 @@
                 </div>
             <div class="topping">
             {%for topping in Topping%}
-                 <input type="checkbox" value="{{topping}}"><label>{{topping}}</label>
+                 <input type="checkbox" onchange="limit({{Sicillian.option}},event)"value="{{topping.id}}"><label>{{topping}}</label>
 
             {%endfor%}
 
                 </div>
-         <div class="button">add to chart</div>
+         <div class="button" onclick="sici_pizza({{Sicillian.id}},event,{{request.user.id}})">add to chart</div>
      <br>
 </div>
 {%endfor%}
@@ -68,24 +69,27 @@
     <h3>Salad</h3>
 <div class="cont">
     {%for salad in Salad%}
-    <div>
+    <div onclick=" show_button(event)">
    <label >{{salad}}</label><br>
+        <div class="button" onclick="salad({{salad.id}},event ,{{request.user.id}})">add to chart</div>
     </div>
     {%endfor%}
+
 </div>
 
 
     <h3>Subs</h3>
 <div class="cont">
     {%for subs in Subs%}
-     <div>
+     <div onclick="show_size(event)">
         <label>{{subs}}</label><br>
         <div class="size">
              <input  type="radio" name ='large'value="large">  <label>large</label>
             <input  type="radio" name="small" value="small">  <label>small</label>
         </div>
+         <div class="button" onclick="sici_pizza({{Sicillian.id}},event,{{request.user.id}})">add to chart</div>
         <br/><br/>
-          </div>
+     </div>
     {%endfor%}
 </div>
 
@@ -93,9 +97,10 @@
     <h3>Pasta</h3>
 <div class="cont">
     {%for pasta in Pasta%}
-     <div>
-   <label    >{{pasta}}</label><br>
-          </div>
+    <div onclick=" show_button(event)">
+    <label>{{pasta}}</label><br>
+    <div class="button" onclick="pasta({{pasta.id}},event, {{request.user.id}})">add to chart</div>
+</div>
     {%endfor%}
 </div>
 
@@ -103,14 +108,16 @@
 <div class="cont">
 
     {%for plater in Plater%}
-     <div>
+     <div onclick="show_size(event)">
    <label >{{plater}}</label><br>
-           </div>
+
     <div class="size">
     <input id="large" type="radio" name ='large'value="large">  <label>large</label>
     <input id= "small"type="radio" name="small" value="small">  <label>small</label>
    </div>
+      <div class="button" onclick="sici_pizza({{Sicillian.id}},event,{{request.user.id}})">add to chart</div>
     <br/>
+      </div>
     {%endfor%}
 </div>
 </body>

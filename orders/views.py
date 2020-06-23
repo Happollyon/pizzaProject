@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login as login_2, logout as logout_2
 from django.contrib.auth.models import User
 from django.urls import reverse
+from .models import user_reg_pizza,user_sici_pizza,user_pasta,user_salad
 import json
 
 # Create your views here.
@@ -35,7 +36,8 @@ def menu(request):
             "Pasta":Pasta.objects.all(),
             "Salad":Salad.objects.all(),
             "Plater":Plater.objects.all(),
-            "Subs":Subs.objects.all()
+            "Subs":Subs.objects.all(),
+
             }
         return render(request,'orders/menu.html',context)
     else:
@@ -60,7 +62,58 @@ def logout(request):
     return HttpResponseRedirect(reverse("index"))
 
 def reg_pizza(request):
+
     #top= request.POST.getlist('data')
     json_data = json.loads(request.body)
     print(json_data)
+    toppin=[0]*5
+
+    for i in range(0,4):
+        print(i)
+        #print(json_data['tp'][i])
+        #print(len(json_data['tp']))
+        if len(json_data['tp'])-1 >= i :
+          toppin[i] = json_data['tp'][i]
+        else:
+            print('else')
+            toppin[i]=0
+
+
+
+    foo_instance = user_reg_pizza.objects.create(user_id=json_data['user_id'],size=json_data['item_size'],item_id=json_data['item_id'],option_1=toppin[0],option_2=toppin[1],option_3=toppin[2],option_4=toppin[3],option_5=toppin[4])
+
+    return HttpResponse('e')
+
+def sici_pizza(request):
+
+    #top= request.POST.getlist('data')
+    json_data = json.loads(request.body)
+    print(json_data)
+    toppin=[0]*5
+
+    for i in range(0,4):
+        print(i)
+        #print(json_data['tp'][i])
+        #print(len(json_data['tp']))
+        if len(json_data['tp'])-1 >= i:
+          toppin[i] = json_data['tp'][i]
+        else:
+            print('else')
+            toppin[i]=0
+
+
+
+    foo_instance = user_sici_pizza.objects.create(user_id=json_data['user_id'],size=json_data['item_size'],item_id=json_data['item_id'],option_1=toppin[0],option_2=toppin[1],option_3=toppin[2],option_4=toppin[3],option_5=toppin[4])
+
+    return HttpResponse('e')
+def pasta(request):
+    json_data = json.loads(request.body)
+    print(json_data)
+    user_pasta.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'])
+    return HttpResponse('e')
+
+def salad(request):
+    json_data = json.loads(request.body)
+    print(json_data)
+    user_salad.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'])
     return HttpResponse('e')

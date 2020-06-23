@@ -6,15 +6,25 @@ document.getElementsByTagName('head')[0].appendChild(script);
 // the code above includes the jquery cdn to the document
 
 
+function show_size(event)
+{
+	let item = event.currentTarget;
+	item.querySelector(".button").style.display="flex";
+	item.querySelector(".size").style.display="flex";
+}
+function show_button(event)
 
-
+{
+	let item = event.currentTarget;
+	item.querySelector(".button").style.display="flex";
+}
 // this function displays the detais of clicked item in the menu
 function show_details(event)
  {
- 
-	let item = event.currentTarget;
-	item.querySelector(".size").style.display='flex';		item.querySelector(".topping").style.display='flex';
-	item.querySelector(".button").style.display="flex";	  
+ 	
+	    let item = event.currentTarget;
+	    item.querySelector(".size").style.display='flex';			item.querySelector(".topping").style.display='flex';
+	    item.querySelector(".button").style.display="flex";	  
  }
 
 // this function gets the tokent to send back to server
@@ -37,9 +47,9 @@ function getCookie(name) {
 		
 
 // this function limts the amount of toppings the user can select
-function limit(event)
+function limit(option,event)
 {
-	let limit =3;
+	let limit =option;
 	
 
 	console.log($(event.currentTarget).siblings(':checked').length)
@@ -52,18 +62,26 @@ function limit(event)
 
 
 // this function adds item to basket
-function regular_pizza(item,event)
+
+function regular_pizza(item,event,user)
 {
 	//token to be sent to the server 
-	var csrftoken = getCookie('csrftoken');
+	var csrftoken = getCookie('csrftoken')
 	let topping_cont=$(event.currentTarget).siblings('div.topping')
+	let size_cont=$(event.currentTarget).siblings('div.size')
+	
+	// gets the size of the pizza
+	let size = size_cont.children(':checked').val()
+	console.log(size)
 	let topping = []
-	 topping_cont.children(':checked').each(function (){
-	  topping.push($(this).val())	
+	let user_id = user
+	//selects all checked boxes and saves to an array
+	topping_cont.children(':checked').each(function (){
+	  topping.push($(this).val())
+		
 	 })
-	console.log(topping)
-	let item_obj=document.getElementById(item)
-	let size=''
+
+
 
 	var xhttp = new XMLHttpRequest();
 	  xhttp.onreadystatechange = function() 
@@ -72,34 +90,148 @@ function regular_pizza(item,event)
 		  {
 			  alert('1')
 	          }
-		    };
+		};
+	
+	//converts data to a json file and sends it to server
+	let data ={}
+	data = {
+		tp: topping,
+		item_id:item,
+		item_size:size,
+		user_id:user_id
+	}
+	data = JSON.stringify(data)
 	
 
-	let data ={tp1:"chees", tp2:"bacon",tp3:"tomato"}
-	data = JSON.stringify(data)
+	console.log(data)
+	
+	// sends data to database
 	xhttp.open("POST", "/reg_pizza", true);
 	xhttp.setRequestHeader("Content-type", "application/json");  
 	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
 	xhttp.send(data);
 }
-function sici_pizza()
+function sici_pizza(item,event,user)
 {
-	let topping=''
-	let item=''
-	let size=''
-}
-function pasta()
-{
-	let item=''
+	
+	//token to be sent to the server 
+	var csrftoken = getCookie('csrftoken')
+	let topping_cont=$(event.currentTarget).siblings('div.topping')
+	let size_cont=$(event.currentTarget).siblings('div.size')
+	
+	// gets the size of the pizza
+	let size = size_cont.children(':checked').val()
+	console.log(size)
+	let topping = []
+	let user_id = user
+	//selects all checked boxes and saves to an array
+	topping_cont.children(':checked').each(function (){
+	  topping.push($(this).val())
+		
+	 })
+
+
+
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	       	{
+		      if (this.readyState == 4 && this.status == 200) 
+		  {
+			  alert('1')
+	          }
+		};
+	
+	//converts data to a json file and sends it to server
+	let data ={}
+	data = {
+		tp: topping,
+		item_id:item,
+		item_size:size,
+		user_id:user_id
+	}
+	data = JSON.stringify(data)
+	
+
+	console.log(data)
+	
+	// sends data to database
+	xhttp.open("POST", "/sici_pizza", true);
+	xhttp.setRequestHeader("Content-type", "application/json");  
+	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
+	xhttp.send(data);
+
+
+	
 }
 
-function salad()
+function pasta(item,event,user)
+	{
+
+	//token to be sent to the server 
+	var csrftoken = getCookie('csrftoken')
+	let user_id = user
+	
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	       	{
+		      if (this.readyState == 4 && this.status == 200) 
+		  {
+			  alert('1')
+	          }
+		};
+	
+	//converts data to a json file and sends it to server
+	let data ={}
+	data = {
+	
+			item_id:item,
+			user_id:user_id
+	}
+	data = JSON.stringify(data)
+
+	// sends data to database
+	xhttp.open("POST", "/pasta", true);
+	xhttp.setRequestHeader("Content-type", "application/json");  
+	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
+	xhttp.send(data);
+
+
+}
+
+function salad(item, event,user)
 {
-		let item=''
+
+	
+	//token to be sent to the server 
+	var csrftoken = getCookie('csrftoken')
+	let user_id = user
+	
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	       	{
+		      if (this.readyState == 4 && this.status == 200) 
+		  {
+			  alert('1')
+	          }
+		};
+	
+	//converts data to a json file and sends it to server
+	let data ={}
+	data = {
+	
+			item_id:item,
+			user_id:user_id
+	}
+	data = JSON.stringify(data)
+
+	// sends data to database
+	xhttp.open("POST", "/salad", true);
+	xhttp.setRequestHeader("Content-type", "application/json");  
+	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
+	xhttp.send(data);
 }	
 
-function platter()
+function platter(item,event)
 {
-	let item=''
-	let size=''
+	
 }

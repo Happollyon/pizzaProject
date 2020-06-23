@@ -10,6 +10,9 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("logout", views.logout, name="logout"),
     path("reg_pizza", views.reg_pizza, name="reg_pizza"),
+    path("sici_pizza", views.sici_pizza, name="sici_pizza"),
+    path("pasta", views.pasta, name="pasta"),
+    path("salad", views.salad, name="salad"),
     path("<int:topping>", views.reg_pizza)
 ]
 urlpatterns+= staticfiles_urlpatterns()
