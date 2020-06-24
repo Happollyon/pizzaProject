@@ -87,7 +87,7 @@
              <input  type="radio" name ='large'value="large">  <label>large</label>
             <input  type="radio" name="small" value="small">  <label>small</label>
         </div>
-         <div class="button" onclick="sici_pizza({{Sicillian.id}},event,{{request.user.id}})">add to chart</div>
+         <div class="button" onclick="subs({{subs.id}},event,{{request.user.id}})">add to chart</div>
         <br/><br/>
      </div>
     {%endfor%}
@@ -115,7 +115,7 @@
     <input id="large" type="radio" name ='large'value="large">  <label>large</label>
     <input id= "small"type="radio" name="small" value="small">  <label>small</label>
    </div>
-      <div class="button" onclick="sici_pizza({{Sicillian.id}},event,{{request.user.id}})">add to chart</div>
+      <div class="button" onclick="platter({{plater.id}},event,{{request.user.id}})">add to chart</div>
     <br/>
       </div>
     {%endfor%}

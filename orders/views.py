@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login as login_2, logout as logout_2
 from django.contrib.auth.models import User
 from django.urls import reverse
-from .models import user_reg_pizza,user_sici_pizza,user_pasta,user_salad
+from .models import user_reg_pizza,user_sici_pizza,user_pasta,user_salad,user_sub,user_plater
 import json
 
 # Create your views here.
@@ -116,4 +116,16 @@ def salad(request):
     json_data = json.loads(request.body)
     print(json_data)
     user_salad.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'])
+    return HttpResponse('e')
+
+def plater(request):
+    json_data = json.loads(request.body)
+    print(json_data)
+    user_plater.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'],size=json_data['item_size'])
+    return HttpResponse('e')
+
+def subs(request):
+    json_data = json.loads(request.body)
+    print(json_data)
+    user_sub.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'],size=json_data['item_size'])
     return HttpResponse('e')

@@ -13,6 +13,8 @@ urlpatterns = [
     path("sici_pizza", views.sici_pizza, name="sici_pizza"),
     path("pasta", views.pasta, name="pasta"),
     path("salad", views.salad, name="salad"),
+    path("plater", views.plater, name="plater"),
+    path("subs", views.subs, name="subs"),
     path("<int:topping>", views.reg_pizza)
 ]
 urlpatterns+= staticfiles_urlpatterns()

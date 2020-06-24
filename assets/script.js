@@ -231,7 +231,93 @@ function salad(item, event,user)
 	xhttp.send(data);
 }	
 
-function platter(item,event)
+function platter(item,event,user)
 {
 	
+	//token to be sent to the server 
+	var csrftoken = getCookie('csrftoken')
+	
+	let size_cont=$(event.currentTarget).siblings('div.size')
+	
+	// gets the size of the pizza
+	let size = size_cont.children(':checked').val()
+
+	let user_id = user
+	//selects all checked boxes and saves to an array
+
+
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	       	{
+		      if (this.readyState == 4 && this.status == 200) 
+		  {
+			  alert('1')
+	          }
+		};
+	
+	//converts data to a json file and sends it to server
+	let data ={}
+	data = {
+		
+		item_id:item,
+		item_size:size,
+		user_id:user_id
+	}
+	data = JSON.stringify(data)
+	
+
+	console.log(data)
+	
+	// sends data to database
+	xhttp.open("POST", "/plater", true);
+	xhttp.setRequestHeader("Content-type", "application/json");  
+	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
+	xhttp.send(data);
+
+
+}
+function subs(item,event,user)
+{
+	
+	//token to be sent to the server 
+	var csrftoken = getCookie('csrftoken')
+	
+	let size_cont=$(event.currentTarget).siblings('div.size')
+	
+	// gets the size of the pizza
+	let size = size_cont.children(':checked').val()
+
+	let user_id = user
+	//selects all checked boxes and saves to an array
+
+
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() 
+	       	{
+		      if (this.readyState == 4 && this.status == 200) 
+		  {
+			  alert('1')
+	          }
+		};
+	
+	//converts data to a json file and sends it to server
+	let data ={}
+	data = {
+		
+		item_id:item,
+		item_size:size,
+		user_id:user_id
+	}
+	data = JSON.stringify(data)
+	
+
+	console.log(data)
+	
+	// sends data to database
+	xhttp.open("POST", "/subs", true);
+	xhttp.setRequestHeader("Content-type", "application/json");  
+	xhttp.setRequestHeader("X-CSRFToken",csrftoken)
+	xhttp.send(data);
+
+
 }
