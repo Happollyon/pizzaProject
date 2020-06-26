@@ -11,10 +11,9 @@
 
 </head>
 <body>
+<nav><a href="/logout">logout</a><a href="/basket/{{user.id}}">basket</a></nav>
 
-<h2><a href="/logout">logout</a></h2>
-<h2><a href="/logout">{{request.user.id}}</a></h2>
-
+<h2></h2>
 
 <h1 style="color:#2E2E3A">Menu</h1>
 
@@ -31,7 +30,7 @@
 
                 <div class="topping" >
                         {%for topping in Topping%}
-                             <input  type="checkbox"  onchange="limit({{regular.option}},event)" name="topping"value="{{topping.id}}"><label style="color:#FFFFFF">{{topping}}</label>
+                             <input  type="checkbox"  onchange="limit({{regular.option}},event)" name="topping"value="{{topping.id}}"><label style="color:#FFFFFF">{{topping}}  {{topping.id}}</label>
                         {%endfor%}
                 </div>
          <div class="button" onclick="regular_pizza({{regular.id}},event,{{request.user.id}})">add to chart</div>

@@ -50,7 +50,7 @@ function getCookie(name) {
 function limit(option,event)
 {
 	let limit =option;
-	
+	console.log($(event.currentTarget).val())	
 
 	console.log($(event.currentTarget).siblings(':checked').length)
 	if($(event.currentTarget).siblings(':checked').length >= limit) {
@@ -320,4 +320,18 @@ function subs(item,event,user)
 	xhttp.send(data);
 
 
+}
+
+function addPrices()
+{ alert('1')
+var total_price  = 0
+
+var l = document.getElementsByClassName("price").length
+	for(let i=0; i<l;i++)
+	{
+		let price = document.getElementsByClassName("price")[i].innerHTML
+		price = parseInt(price)
+		total_price= total_price + price
+	}	
+	document.getElementById("total_price").innerHTML=total_price + " euros"
 }

@@ -15,6 +15,7 @@ urlpatterns = [
     path("salad", views.salad, name="salad"),
     path("plater", views.plater, name="plater"),
     path("subs", views.subs, name="subs"),
+    path("basket/<int:user_id>",views.basket,name='basket'),
     path("<int:topping>", views.reg_pizza)
 ]
 urlpatterns+= staticfiles_urlpatterns()

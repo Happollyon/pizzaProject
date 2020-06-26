@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+      <script src="/static/script.js"></script>
+    <title>Pizzaria</title>
+</head>
+<body onload="addPrices()">
+<nav><a href="/">login</a><a href="/register">register</a></nav>
+ {%for reg_pizza in reg_pizza%}
+     <h1> Regular pizza</h1>
+    <h1>{{reg_pizza.item_id.name}}</h1>
+    <h2>{{reg_pizza.size}}</h2>
+    {% if reg_pizza.size == 'small' %}
+    <h3 class="price" >{{reg_pizza.item_id.price1}}</h3>
+    {%endif%}
+    {% if reg_pizza.size == 'large' %}
+    <h3 class="price">{{reg_pizza.item_id.price2}}</h3>
+    {%endif%}
+  <h2>{{reg_pizza.option_1}}</h2>
+   <h2>{{reg_pizza.option_2}}</h2>
+  <h2>{{reg_pizza.option_3}}</h2>
+  <h2>{{reg_pizza.option_4}}</h2>
+  <h2>{{reg_pizza.option_5}}</h2>
+{%endfor%}
+<br><br><br>
+{%for sici_pizza in sici_pizza%}
+    <h1> Sicillian pizza</h1>
+    <h1>{{sici_pizza.item_id.name}}</h1>
+    <h2>{{sici_pizza.size}}</h2>
+  {% if sici_pizza.size == 'small' %}
+    <h3 class="price">{{sici_pizza.item_id.price1}}</h3>
+    {%endif%}
+    {% if sici_pizza.size == 'large' %}
+    <h3 class="price">{{sici_pizza.item_id.price2}}</h3>
+    {%endif%}
+  <h2>{{sici_pizza.option_1}}</h2>
+   <h2>{{sici_pizza.option_2}}</h2>
+  <h2>{{sici_pizza.option_3}}</h2>
+  <h2>{{sici_pizza.option_4}}</h2>
+  <h2>{{sici_pizza.option_5}}</h2>
+{%endfor%}
+<br><br><br>
+{%for subs in subs%}
+    <h1> Subs </h1>
+    <h1>{{subs.item_id.name}}</h1>
+    <h2>{{subs.size}}</h2>
+
+  {% if subs.size == 'small' %}
+    <h3 class="price">{{subs.item_id.price1}}</h3>
+    {%endif%}
+    {% if subs.size == 'large' %}
+    <h3 class="price">{{subs.item_id.price2}}</h3>
+    {%endif%}
+{%endfor%}
+<br><br><br>
+{%for pasta in pasta%}
+    <h1> pasta </h1>
+    <h1>{{pasta.item_id.name}}</h1>
+    <h1 class="price">{{pasta.item_id.price}}</h1>
+
+{%endfor%}
+<br><br><br>
+{%for salad in salad%}
+    <h1> salad </h1>
+    <h2>{{salad.item_id.name}}</h2>
+    <h2 class="price">{{salad.item_id.price}}</h2>
+
+{%endfor%}
+<br><br><br>
+<h2>Total: </h2><h3 id="total_price"></h3>
+</body>
+</html>

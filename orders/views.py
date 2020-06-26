@@ -66,21 +66,25 @@ def reg_pizza(request):
     #top= request.POST.getlist('data')
     json_data = json.loads(request.body)
     print(json_data)
+    user = User.objects.get(id=json_data['user_id'])
+    pizza = Regular_pizza.objects.get(id=json_data['item_id'])
     toppin=[0]*5
 
-    for i in range(0,4):
-        print(i)
-        #print(json_data['tp'][i])
-        #print(len(json_data['tp']))
+
+    for i in range(0,5):
+
+
         if len(json_data['tp'])-1 >= i :
-          toppin[i] = json_data['tp'][i]
+          toppin[i] = Topping.objects.get(id=json_data['tp'][i])
+
         else:
-            print('else')
-            toppin[i]=0
+
+            toppin[i]=Topping.objects.get(id=21)
 
 
 
-    foo_instance = user_reg_pizza.objects.create(user_id=json_data['user_id'],size=json_data['item_size'],item_id=json_data['item_id'],option_1=toppin[0],option_2=toppin[1],option_3=toppin[2],option_4=toppin[3],option_5=toppin[4])
+
+    user_reg_pizza.objects.create(user_id=user,size=json_data['item_size'],item_id=pizza,option_1=toppin[0],option_2=toppin[1],option_3=toppin[2],option_4=toppin[3],option_5=toppin[4])
 
     return HttpResponse('e')
 
@@ -88,44 +92,61 @@ def sici_pizza(request):
 
     #top= request.POST.getlist('data')
     json_data = json.loads(request.body)
-    print(json_data)
     toppin=[0]*5
+    user = User.objects.get(id=json_data['user_id'])
+    pizza = Sicillia_pizza.objects.get(id=json_data['item_id'])
+    print(json_data['tp'])
+    for i in range(0, 5):
 
-    for i in range(0,4):
-        print(i)
-        #print(json_data['tp'][i])
-        #print(len(json_data['tp']))
-        if len(json_data['tp'])-1 >= i:
-          toppin[i] = json_data['tp'][i]
+        if len(json_data['tp']) - 1 >= i:
+            toppin[i] = Topping.objects.get(id=json_data['tp'][i])
+
         else:
-            print('else')
-            toppin[i]=0
+
+            toppin[i] = Topping.objects.get(id=21)
 
 
 
-    foo_instance = user_sici_pizza.objects.create(user_id=json_data['user_id'],size=json_data['item_size'],item_id=json_data['item_id'],option_1=toppin[0],option_2=toppin[1],option_3=toppin[2],option_4=toppin[3],option_5=toppin[4])
+    user_sici_pizza.objects.create(user_id=user,size=json_data['item_size'],item_id=pizza,option_1=toppin[0],option_2=toppin[1],option_3=toppin[2],option_4=toppin[3],option_5=toppin[4])
 
     return HttpResponse('e')
 def pasta(request):
     json_data = json.loads(request.body)
-    print(json_data)
-    user_pasta.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'])
+    user = User.objects.get(id=json_data['user_id'])
+    pasta = Pasta.objects.get(id=json_data['item_id'])
+    user_pasta.objects.create(user_id=user,item_id=pasta)
     return HttpResponse('e')
 
 def salad(request):
     json_data = json.loads(request.body)
-    print(json_data)
-    user_salad.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'])
+    user = User.objects.get(id=json_data['user_id'])
+    salad = Salad.objects.get(id=json_data['item_id'])
+    user_salad.objects.create(user_id=user, item_id=salad   )
     return HttpResponse('e')
 
 def plater(request):
     json_data = json.loads(request.body)
-    print(json_data)
-    user_plater.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'],size=json_data['item_size'])
+    user = User.objects.get(id=json_data['user_id'])
+    plater = Plater.objects.get(id=json_data['item_id'])
+    user_plater.objects.create(user_id=user,item_id=plater,size=json_data['item_size'])
     return HttpResponse('e')
 
 def subs(request):
     json_data = json.loads(request.body)
-    print(json_data)
-    user_sub.objects.create(user_id=json_data['user_id'],item_id=json_data['item_id'],size=json_data['item_size'])
+    user = User.objects.get(id=json_data['user_id'])
+    subs = Subs.objects.get(id=json_data['item_id'])
+    user_sub.objects.create(user_id=user,item_id=subs,size=json_data['item_size'])
     return HttpResponse('e')
+
+
+def basket(request,user_id):
+    user=user_id
+    context={
+            "reg_pizza": user_reg_pizza.objects.filter(user_id=user),
+            "sici_pizza":user_sici_pizza.objects.filter(user_id=user),
+            "subs":user_sub.objects.filter(user_id=user),
+            "pasta":user_pasta.objects.filter(user_id=user),
+            "salad":user_salad.objects.filter(user_id=user)
+        }
+
+    return   render(request,"orders/basket.html",context)
