@@ -67,3 +67,12 @@ border-radius: 3px;
 color: white;
 text-align: center;
 }
+.button2{
+	margin:1vw;
+cursor:pointer;
+background: #5b80b2;
+width: 40%;
+border-radius: 3px;
+color: white;
+text-align: center;
+}

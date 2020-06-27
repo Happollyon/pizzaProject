@@ -22,6 +22,7 @@ justify-content:space-around;
 }
 a{
     text-decoration: none;
+    cursor:pointer;
     color: black;
 }
 
@@ -60,6 +61,14 @@ border-radius:9px;
 }
 .button{
 display: none;
+background: #5b80b2;
+width: 40%;
+border-radius: 3px;
+color: white;
+text-align: center;
+}
+.button2{
+cursor:pointer;
 background: #5b80b2;
 width: 40%;
 border-radius: 3px;

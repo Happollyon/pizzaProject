@@ -322,9 +322,16 @@ function subs(item,event,user)
 
 }
 
+function delivery()
+{
+let total=	document.getElementById('total_price').innerHTML
+total = parseInt(total)
+	document.getElementById('total_price').innerHTML=total+6 +"euros"
+}
+
+
 function addPrices()
-{ alert('1')
-var total_price  = 0
+{var total_price  = 0
 
 var l = document.getElementsByClassName("price").length
 	for(let i=0; i<l;i++)
