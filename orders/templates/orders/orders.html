@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>orders</title>
+    <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+ <h2>Regular Pizzas</h2>
+ {%for reg_pizza in reg_pizza %}
+
+{{reg_pizza.item_id.name}}
+ {{reg_pizza.size}}
+ <div style="display:flex;flex-direction:row;"><h4>Client:</h4>{{reg_pizza.user_id}}</div>
+ <h4>toppings</h4>
+  {{reg_pizza.option_1}}
+  {{reg_pizza.option_2}}
+  {{reg_pizza.option_3}}
+  {{reg_pizza.option_4}}
+  {{reg_pizza.option_5}}
+
+ <br/>
+ {%endfor%}
+
+<br/><br/><br/><br/>
+
+ <h2>Sicillian Pizzas</h2>
+ {%for reg_pizza in sici_pizza %}
+{{reg_pizza.item_id.name}}
+ {{reg_pizza.size}}
+<div style="display:flex;flex-direction:row;"><h4>Client:</h4>{{reg_pizza.user_id}}</div>
+  <h4>toppings</h4>
+  {{reg_pizza.option_1}}
+  {{reg_pizza.option_2}}
+  {{reg_pizza.option_3}}
+  {{reg_pizza.option_4}}
+  {{reg_pizza.option_5}}
+
+ <br/>
+ {%endfor%}
+
+<br/><br/><br/><br/>
+
+
+
+<h2>Subs</h2>
+ {%for reg_pizza in subs %}
+{{reg_pizza.item_id.name}}
+ {{reg_pizza.size}}
+<div style="display:flex;flex-direction:row;"><h4>Client:</h4>{{reg_pizza.user_id}}</div>
+ <br/>
+ {%endfor%}
+
+
+<br/><br/><br/><br/>
+<h2>Salads</h2>
+ {%for reg_pizza in salad %}
+{{reg_pizza.item_id.name}}
+
+<div style="display:flex;flex-direction:row;"><h4>Client:</h4>{{reg_pizza.user_id}}</div>
+ <br/>
+ {%endfor%}
+
+
+<br/><br/><br/><br/>
+<h2>Platters</h2>
+ {%for reg_pizza in plater %}
+{{reg_pizza.item_id.name}}
+ {{reg_pizza.size}}
+ <div style="display:flex;flex-direction:row;"><h4>Client:</h4>{{reg_pizza.user_id}}</div>
+ <br/>
+ {%endfor%}
+
+<br/><br/><br/><br/>
+ <h2>Pastas</h2>
+{%for reg_pizza in pasta %}
+{{reg_pizza.item_id.name}}
+<div style="display:flex;flex-direction:row;"><h4>Client:</h4>{{reg_pizza.user_id}}</div>
+ <br/>
+ {%endfor%}
+</body>
+</html>

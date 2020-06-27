@@ -53,7 +53,7 @@ def create(request):
     password = request.POST["password"]
 
     user = User.objects.create_user(username, email,password)
-    print('okay')
+
     return HttpResponseRedirect(reverse("index"))
 
 def logout(request):
@@ -95,7 +95,7 @@ def sici_pizza(request):
     toppin=[0]*5
     user = User.objects.get(id=json_data['user_id'])
     pizza = Sicillia_pizza.objects.get(id=json_data['item_id'])
-    print(json_data['tp'])
+
     for i in range(0, 5):
 
         if len(json_data['tp']) - 1 >= i:
@@ -150,3 +150,29 @@ def basket(request,user_id):
         }
 
     return   render(request,"orders/basket.html",context)
+
+
+def orders(request):
+
+    context={
+        "reg_pizza": user_reg_pizza.objects.filter(confirm=1),
+        "sici_pizza": user_sici_pizza.objects.filter(confirm=1),
+        "subs": user_sub.objects.filter(confirm=1),
+        "pasta": user_pasta.objects.filter(confirm=1),
+        "salad": user_salad.objects.filter(confirm=1),
+        "plater": user_plater.objects.filter(confirm=1)
+
+        }
+    print(context)
+    return render(request,"orders/orders.html",context)
+
+def confirm(requets, user_id):
+    user = user_id
+
+
+    user_reg_pizza.objects.filter(user_id=user).update(confirm=1)
+    user_sici_pizza.objects.filter(user_id=user).update(confirm=1)
+    user_sub.objects.filter(user_id=user).update(confirm=1)
+    user_pasta.objects.filter(user_id=user).update(confirm=1)
+    user_salad.objects.filter(user_id=user).update(confirm=1)
+    return HttpResponseRedirect(reverse("menu"))
